@@ -17,9 +17,12 @@
 <input id="name" name="name">
 <label for="money">財產</label>
 <input type="number" id="money" name="money">
-
+<input type="submit" id="send" name="send" value="提交">
  </form>
+</div>
 
+<div id="status_style" name="status_style">
+<span value="${status}"></span>
 
 </div>
 </body>

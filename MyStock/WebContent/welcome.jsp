@@ -9,9 +9,14 @@
 <body>
 <h1>你好</h1>
 
-<div>
+<div id="form_style" name="form_style">
 <form action="userlogin" method="get" id="sendtologin" name="sendtologin">
 <button type="submit" id="send" name="send">會員登入</button>
+</form>
+</div>
+<div id="form_style" name="form_style">
+<form action="stockinput" method="get" id="sendtostockinput" name="sendtostockinput">
+<button type="submit" id="send" name="send">股票創建</button>
 </form>
 </div>
 </body>

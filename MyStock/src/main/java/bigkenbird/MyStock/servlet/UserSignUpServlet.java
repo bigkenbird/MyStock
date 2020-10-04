@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bigkenbird.MyStock.service.serviceImp.UserServiceImp;
 import bigkenbird.MyStock.vo.UserVo;
@@ -16,21 +17,30 @@ public class UserSignUpServlet extends HttpServlet {
 	
 	
 	private static final long serialVersionUID = 1L;
-	private static UserServiceImp userServiceImp;
+	private static UserServiceImp userServiceImp=new UserServiceImp();
 	
 	@Override
 	public void doGet(HttpServletRequest resquest,HttpServletResponse response) {
 		try {
 			response.sendRedirect("usersignup.jsp");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest request,HttpServletResponse response) {
-		saveMember(request,response);
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		UserVo rs=saveMember(request,response);
+		HttpSession session=request.getSession();
+		if(rs!=null) {
+			session.setAttribute("user", rs);
+			response.sendRedirect("usermain.jsp");
+		}
+		else {
+			session.setAttribute("status", "NO Correct");
+			response.sendRedirect("usersignup.jsp");
+		}
 		
 	}
 	

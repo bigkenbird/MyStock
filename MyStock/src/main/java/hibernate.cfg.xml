@@ -13,6 +13,7 @@
         <property name="hibernate.current_session_context_class">thread</property>
         
         <mapping class="bigkenbird.MyStock.vo.UserVo" />
+        <mapping class="bigkenbird.MyStock.vo.StockVo" />
         
     </session-factory>
  
