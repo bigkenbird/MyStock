@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource 
+		name="jdbc/mystock"
+		type="javax.sql.DataSource"
+		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		url="jdbc:sqlserver://localhost:1433;DatabaseName=MyStock"
+		username="sa" 
+		password="password" 
+		maxActive="20" 
+		maxIdle="10"
+		maxWait="10000" />
+
+</Context>
