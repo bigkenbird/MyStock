@@ -1,6 +1,7 @@
 package bigkenbird.MyStock.servlet;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ public class StockInputServlet extends HttpServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		response.sendRedirect("stockinput.jsp");
+		request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp");
 	}
 	
 	
@@ -29,23 +30,23 @@ public class StockInputServlet extends HttpServlet {
 		if(result!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("status", "輸入成功");
-			response.sendRedirect("stockinput.jsp");
+			request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp");
 		}
 		else {
 			HttpSession session=request.getSession();
 			session.setAttribute("status", "輸入失敗");
-			response.sendRedirect("stockinput.jsp");
+			request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp");
 		}
 		
 	}
 
 
-	public StockVo saveStock(HttpServletRequest request, HttpServletResponse response) {
+	public StockVo saveStock(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		String stocksymbol=request.getParameter("stocksymbol");
 		String component=request.getParameter("component");
 		Integer price=Integer.valueOf(request.getParameter("price"));
 		StockVo obj=new StockVo(stocksymbol,component,price);
-		stockServiceImp.save(obj);
+		stockServiceImp.saveOrUpdate(obj);
 		return obj;
 		
 		

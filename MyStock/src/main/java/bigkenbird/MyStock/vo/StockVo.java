@@ -17,6 +17,12 @@ public class StockVo {
 	}
 
 
+	public StockVo() {
+		super();
+		
+	}
+
+
 	@Id
 	@Column(name="stocksymbol")
 	private String stocksymbol;

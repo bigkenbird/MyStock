@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>會員註冊</title>
+<jsp:include page="/WEB-INF/header&footer/header.jsp" flush="true"/>
 </head>
 <body>
 <div id="usersignupform" name="form_style">

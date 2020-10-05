@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>股票創建</title>
+<jsp:include page="/WEB-INF/header&footer/header.jsp" flush="true"/>
 </head>
 <body>
 <div id="form_style" name="form_style">

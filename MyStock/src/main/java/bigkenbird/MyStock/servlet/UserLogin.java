@@ -1,7 +1,5 @@
 package bigkenbird.MyStock.servlet;
 
-import java.io.IOException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,26 +18,23 @@ public class UserLogin extends HttpServlet {
 	public void doPost(HttpServletRequest request,HttpServletResponse response) {
 	String account=request.getParameter("account");
 	String password=request.getParameter("password");
-	checkLogin(account,password);
+	checkLogin(account,password,request,response);
 	}
 	
 	@Override  
 	public void doGet(HttpServletRequest request,HttpServletResponse response) {
-		try {
-			response.sendRedirect("login.jsp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		request.getRequestDispatcher("/WEB-INF/login/login.jsp");
 	}
 	
-	public void checkLogin(String account,String password) {
+	public void checkLogin(String account,String password,HttpServletRequest request,HttpServletResponse response) {
 		boolean rs=userServiceImp.checkLogin(account, password);
 		if(rs) {
 			System.out.println("成功登陸");
+			request.getRequestDispatcher("/WEB-INF/usermain/usermain.jsp");
 		}
 		else {
 			System.out.println("登陸失敗");
+			request.getRequestDispatcher("/WEB-INF/login/login.jsp");
 		}
 	}
 	

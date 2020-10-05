@@ -10,8 +10,8 @@ public class StockServiceImp implements StockService {
 
 	
 	@Override
-	public StockVo save(StockVo obj) {
-		stockDao.save(obj);
+	public StockVo saveOrUpdate(StockVo obj) {
+		stockDao.saveOrUpdate(obj);
 		return obj;
 	}
 }

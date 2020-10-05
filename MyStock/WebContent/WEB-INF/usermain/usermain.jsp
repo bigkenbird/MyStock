@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>會員管理</title>
+<jsp:include page="/WEB-INF/header&footer/header.jsp" flush="true"/>
 </head>
 <body>
 <div id="table_style" name="table_style">

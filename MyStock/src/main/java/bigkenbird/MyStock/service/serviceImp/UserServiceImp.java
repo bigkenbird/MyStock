@@ -26,8 +26,8 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public UserVo saveMember(UserVo result) {
-		userDao.save(result);
+	public UserVo saveOrUpdateMember(UserVo result) {
+		userDao.saveOrUpdate(result);
 		return result;
 	}
 

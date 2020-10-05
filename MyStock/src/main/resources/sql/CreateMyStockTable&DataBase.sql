@@ -16,3 +16,6 @@ component NVARCHAR(50) NOT NULL,
 price INT NOT NULL
 )
 GO
+CREATE TABLE Transactions(
+
+)

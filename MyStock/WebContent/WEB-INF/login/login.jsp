@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>登入畫面</title>
+<jsp:include page="/WEB-INF/header&footer/header.jsp" flush="true"/>
 </head>
 <body>
 <div id="userloginform">
@@ -16,11 +17,7 @@
 <input type="submit" id="send" name="send" value="提交">
 </form>
 </div>
-<div id="sendtousersignup">
-<form action="usersignup" method="GET"  name="form_style">
-<input type="submit" id="sendbutton" name="sendbutton" value="會員註冊">
-</form>
-</div>
+
 
 </body>
 </html>

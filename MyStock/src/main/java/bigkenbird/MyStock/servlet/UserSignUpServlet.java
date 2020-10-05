@@ -2,6 +2,7 @@ package bigkenbird.MyStock.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,26 +21,29 @@ public class UserSignUpServlet extends HttpServlet {
 	private static UserServiceImp userServiceImp=new UserServiceImp();
 	
 	@Override
-	public void doGet(HttpServletRequest resquest,HttpServletResponse response) {
+	public void doGet(HttpServletRequest request,HttpServletResponse response) {
 		try {
-			response.sendRedirect("usersignup.jsp");
+			request.getRequestDispatcher("/WEB-INF/signup/usersignup.jsp").forward(request,response);
 		} catch (IOException e) {
 			
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		UserVo rs=saveMember(request,response);
 		HttpSession session=request.getSession();
 		if(rs!=null) {
 			session.setAttribute("user", rs);
-			response.sendRedirect("usermain.jsp");
+			request.getRequestDispatcher("/WEB-INF/usermain/usermain.jsp").forward(request,response);
 		}
 		else {
-			session.setAttribute("status", "NO Correct");
-			response.sendRedirect("usersignup.jsp");
+			session.setAttribute("status", "NOT Correct");
+			request.getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request,response);
 		}
 		
 	}
@@ -51,7 +55,7 @@ public class UserSignUpServlet extends HttpServlet {
 		String name=request.getParameter("name");
 		Integer money=Integer.valueOf(request.getParameter("money"));
 		UserVo result=new UserVo(account,password,name,money);
-		UserVo rs=userServiceImp.saveMember(result);
+		UserVo rs=userServiceImp.saveOrUpdateMember(result);
 		return result;
 		
 	}

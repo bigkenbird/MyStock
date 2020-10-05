@@ -4,5 +4,5 @@ import bigkenbird.MyStock.vo.StockVo;
 
 public interface StockService {
 	
-	public StockVo save(StockVo obj);
+	public StockVo saveOrUpdate(StockVo obj);
 }

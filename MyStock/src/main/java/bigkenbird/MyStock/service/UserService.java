@@ -6,7 +6,7 @@ public interface UserService {
 	
 	public boolean checkLogin(String account,String password);
 
-	public UserVo saveMember(UserVo result);
+	public UserVo saveOrUpdateMember(UserVo result);
 	
 
 }
