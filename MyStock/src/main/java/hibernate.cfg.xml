@@ -14,6 +14,7 @@
         
         <mapping class="bigkenbird.MyStock.vo.UserVo" />
         <mapping class="bigkenbird.MyStock.vo.StockVo" />
+        <mapping class="bigkenbird.MyStock.vo.TransactionVo" />
         
     </session-factory>
  

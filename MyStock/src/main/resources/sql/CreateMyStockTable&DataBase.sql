@@ -17,5 +17,13 @@ price INT NOT NULL
 )
 GO
 CREATE TABLE Transactions(
-
+transactionid INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+userid INT,
+stocksymbol NVARCHAR(50),
+trans_type NVARCHAR(50),
+shares_num INT,
+trans_income INT,
+trans_time date,
+FOREIGN KEY (userid) REFERENCES Users(userid),
+FOREIGN KEY (stocksymbol) REFERENCES Stocks(stocksymbol),
 )

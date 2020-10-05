@@ -3,6 +3,7 @@ package bigkenbird.MyStock.servlet;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,8 @@ public class StockInputServlet extends HttpServlet {
 	private static StockServiceImp stockServiceImp=new StockServiceImp();
 	
 	@Override
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp");
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+		request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp").forward(request,response);
 	}
 	
 	

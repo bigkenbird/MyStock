@@ -1,8 +1,12 @@
 package bigkenbird.MyStock.vo;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +38,8 @@ public class StockVo {
 	@Column(name="price")
 	private Integer price;
 
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="stockVo")
+	private List<TransactionVo> transactions;
 
 	public String getStocksymbol() {
 		return stocksymbol;
@@ -62,5 +68,10 @@ public class StockVo {
 
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+
+
+	public List<TransactionVo> getTransactions() {
+		return transactions;
 	}
 }

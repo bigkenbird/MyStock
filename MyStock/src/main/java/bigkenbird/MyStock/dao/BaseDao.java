@@ -47,17 +47,13 @@ public abstract class BaseDao<T,E> { //T是vo,E是PK的類別
 	
 	public T delete(T obj) { //刪
 		Session session=getSession();
-//		Transaction ts=session.beginTransaction();
 		session.delete(obj);
-//		ts.commit();
 		return obj;
 	}
 	
 	public T saveOrUpdate(T obj) { //改+增
 		Session session=getSession();
-//		Transaction ts=session.beginTransaction();
 		session.saveOrUpdate(obj);
-//		ts.commit();
 		return obj;
 	}
 	
