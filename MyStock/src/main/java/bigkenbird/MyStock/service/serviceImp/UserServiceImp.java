@@ -31,4 +31,13 @@ public class UserServiceImp implements UserService {
 		return result;
 	}
 
+	@Override
+	public UserVo searchByAccount(String account) {
+		List<UserVo> rs=userDao.seachByAccount(account);
+		if(rs.get(0)!=null) {
+			return rs.get(0);
+		}
+		return null;
+	}
+
 }

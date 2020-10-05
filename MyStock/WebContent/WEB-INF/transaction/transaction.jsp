@@ -9,6 +9,8 @@
 </head>
 <body>
 <form action="transactioninputservlet" method="post">
+<label for="account">買賣帳號</label>
+<input id="account" name="account" type="text">
 <label for="stocksymbol">股票代號</label>
 <input type="text" id="stocksymbol" name="stocksymbol">
 <label for="component">公司名稱</label>

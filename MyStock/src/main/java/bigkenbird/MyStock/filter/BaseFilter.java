@@ -33,7 +33,11 @@ public class BaseFilter implements Filter {
 		session.getTransaction().rollback();
 		e.printStackTrace();
 	}
-		
+	finally{
+        if(session != null){
+            session.close();
+        }
+	}
 	}
 	
 	@Override

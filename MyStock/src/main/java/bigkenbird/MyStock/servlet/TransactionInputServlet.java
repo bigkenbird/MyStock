@@ -10,7 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bigkenbird.MyStock.service.serviceImp.StockServiceImp;
 import bigkenbird.MyStock.service.serviceImp.TransactionServiceImp;
+import bigkenbird.MyStock.service.serviceImp.UserServiceImp;
 import bigkenbird.MyStock.vo.StockVo;
 import bigkenbird.MyStock.vo.TransactionVo;
 import bigkenbird.MyStock.vo.UserVo;
@@ -22,6 +25,10 @@ public class TransactionInputServlet extends HttpServlet {
 	
 	private static TransactionServiceImp transactionServiceImp=new TransactionServiceImp();
 	
+	private static UserServiceImp userServiceImp=new UserServiceImp();
+	
+	private static StockServiceImp stockServiceImp=new StockServiceImp();
+	
 	@Override
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/transaction/transaction.jsp").forward(request,response);
@@ -29,8 +36,10 @@ public class TransactionInputServlet extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest request,HttpServletResponse response) {
-		UserVo testuser=new UserVo("tom1127","tompass","tom",100);
-		StockVo teststock=new StockVo("1129","台積電",1000);
+		String account=request.getParameter("account");
+		String component=request.getParameter("component");
+		UserVo testuser=userServiceImp.searchByAccount(account);
+		StockVo teststock=stockServiceImp.searchByComponent(component);
 		try {
 			saveOrUpdate(request,response,testuser,teststock);
 		} catch (ParseException e) {
@@ -41,8 +50,6 @@ public class TransactionInputServlet extends HttpServlet {
 }
 	
 	public TransactionVo saveOrUpdate(HttpServletRequest request,HttpServletResponse response,UserVo userVo,StockVo stockVo) throws ParseException {
-		String stocksymbol=request.getParameter("stocksymbol");
-		String component=request.getParameter("component");
 		String trans_type=request.getParameter("trans_type");
 		Integer shares_num=Integer.valueOf(request.getParameter("shares_num"));
 		Integer trans_income=666;

@@ -8,5 +8,7 @@ public interface UserService {
 
 	public UserVo saveOrUpdateMember(UserVo result);
 	
+	public UserVo searchByAccount(String account);
+	
 
 }
