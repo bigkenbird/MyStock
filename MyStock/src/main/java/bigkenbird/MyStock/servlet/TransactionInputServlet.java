@@ -3,6 +3,7 @@ package bigkenbird.MyStock.servlet;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import bigkenbird.MyStock.service.serviceImp.UserServiceImp;
 import bigkenbird.MyStock.vo.StockVo;
 import bigkenbird.MyStock.vo.TransactionVo;
 import bigkenbird.MyStock.vo.UserVo;
+
 
 @WebServlet("/transactioninputservlet")
 public class TransactionInputServlet extends HttpServlet {
@@ -53,11 +55,15 @@ public class TransactionInputServlet extends HttpServlet {
 		String trans_type=request.getParameter("trans_type");
 		Integer shares_num=Integer.valueOf(request.getParameter("shares_num"));
 		Integer trans_income=666;
-		DateFormat df = DateFormat.getDateInstance();
-		Date time=df.parse("2020/01/01");
-		TransactionVo result=new TransactionVo(userVo,stockVo,trans_type,shares_num,trans_income,time);
+		Date today=new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String dateformat=sdf.format(today);
+		Date date_rs=sdf.parse(dateformat);
+		TransactionVo result=new TransactionVo(userVo,stockVo,trans_type,shares_num,trans_income,date_rs);
 		result=transactionServiceImp.saveOrUpdate(result);
 		return result;
 		
 	}
+	
+	
 }

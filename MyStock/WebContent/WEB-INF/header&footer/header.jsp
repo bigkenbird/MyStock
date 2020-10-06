@@ -13,5 +13,10 @@
 </form>
 </div>
 
+<div id="form_style" name="form_style">
+<form action="transactioninputservlet" method="get">
+<input type="submit" id="send" name="send" value="股票買賣">
+</form>
+
 
 </head>
