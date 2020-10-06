@@ -27,3 +27,5 @@ trans_time date,
 FOREIGN KEY (userid) REFERENCES Users(userid),
 FOREIGN KEY (stocksymbol) REFERENCES Stocks(stocksymbol),
 )
+GO
+ALTER TABLE Stocks ADD updatetime date;

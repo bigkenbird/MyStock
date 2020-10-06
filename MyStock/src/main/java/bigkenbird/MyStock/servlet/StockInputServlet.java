@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bigkenbird.MyStock.service.serviceImp.StockServiceImp;
+import bigkenbird.MyStock.util.GetToday;
 import bigkenbird.MyStock.vo.StockVo;
 
 @WebServlet("/stockinput")
@@ -26,17 +27,17 @@ public class StockInputServlet extends HttpServlet {
 	
 	
 	@Override
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		StockVo result=saveStock(request,response);
 		if(result!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("status", "輸入成功");
-			request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp");
+			request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp").forward(request, response);
 		}
 		else {
 			HttpSession session=request.getSession();
 			session.setAttribute("status", "輸入失敗");
-			request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp");
+			request.getRequestDispatcher("/WEB-INF/stock/stockinput.jsp").forward(request, response);
 		}
 		
 	}
@@ -46,7 +47,7 @@ public class StockInputServlet extends HttpServlet {
 		String stocksymbol=request.getParameter("stocksymbol");
 		String component=request.getParameter("component");
 		Integer price=Integer.valueOf(request.getParameter("price"));
-		StockVo obj=new StockVo(stocksymbol,component,price);
+		StockVo obj=new StockVo(stocksymbol,component,price, GetToday.today);
 		stockServiceImp.saveOrUpdate(obj);
 		return obj;
 		

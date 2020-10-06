@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import bigkenbird.MyStock.service.serviceImp.StockServiceImp;
 import bigkenbird.MyStock.service.serviceImp.TransactionServiceImp;
 import bigkenbird.MyStock.service.serviceImp.UserServiceImp;
+import bigkenbird.MyStock.util.GetToday;
 import bigkenbird.MyStock.vo.StockVo;
 import bigkenbird.MyStock.vo.TransactionVo;
 import bigkenbird.MyStock.vo.UserVo;
@@ -55,11 +56,7 @@ public class TransactionInputServlet extends HttpServlet {
 		String trans_type=request.getParameter("trans_type");
 		Integer shares_num=Integer.valueOf(request.getParameter("shares_num"));
 		Integer trans_income=666;
-		Date today=new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String dateformat=sdf.format(today);
-		Date date_rs=sdf.parse(dateformat);
-		TransactionVo result=new TransactionVo(userVo,stockVo,trans_type,shares_num,trans_income,date_rs);
+		TransactionVo result=new TransactionVo(userVo,stockVo,trans_type,shares_num,trans_income,GetToday.today);
 		result=transactionServiceImp.saveOrUpdate(result);
 		return result;
 		

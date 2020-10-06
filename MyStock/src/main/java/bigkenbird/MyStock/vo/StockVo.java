@@ -1,5 +1,6 @@
 package bigkenbird.MyStock.vo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,11 +14,12 @@ import javax.persistence.Table;
 @Table(name="Stocks")
 public class StockVo {
 
-	public StockVo(String stocksymbol, String component, Integer price) {
+	public StockVo(String stocksymbol, String component, Integer price,Date updatetime) {
 		super();
 		this.stocksymbol = stocksymbol;
 		this.component = component;
 		this.price = price;
+		this.updatetime=updatetime;
 	}
 
 
@@ -34,9 +36,12 @@ public class StockVo {
 	@Column(name="component")
 	private String component;
 	
-	
+
 	@Column(name="price")
 	private Integer price;
+	
+	@Column(name="updatetime")
+	private Date updatetime;
 
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="stockVo")
 	private List<TransactionVo> transactions;
@@ -73,5 +78,15 @@ public class StockVo {
 
 	public List<TransactionVo> getTransactions() {
 		return transactions;
+	}
+
+
+	public Date getUpdatetime() {
+		return updatetime;
+	}
+
+
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
 	}
 }
