@@ -32,10 +32,5 @@ public class SqlConnect {
 		}
 	}
 	
-	public static void main(String[] args) {
-		System.out.println("hello");
-		SqlConnect conn=new SqlConnect();
-		
-	}
 	
 }
