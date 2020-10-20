@@ -35,7 +35,7 @@ public class UserSignUpServlet extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
-		UserVo rs=saveMember(request,response);
+		UserVo rs=userServiceImp.saveMember(request,response);
 		HttpSession session=request.getSession();
 		if(rs!=null) {
 			session.setAttribute("user", rs);
@@ -48,16 +48,5 @@ public class UserSignUpServlet extends HttpServlet {
 		
 	}
 	
-	public UserVo saveMember(HttpServletRequest request,HttpServletResponse response) {
-		
-		String account=request.getParameter("account");
-		String password=request.getParameter("password");
-		String name=request.getParameter("name");
-		Integer money=Integer.valueOf(request.getParameter("money"));
-		UserVo result=new UserVo(account,password,name,money);
-		UserVo rs=userServiceImp.saveOrUpdateMember(result);
-		return result;
-		
-	}
-
+	
 }

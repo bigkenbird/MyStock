@@ -44,7 +44,7 @@ public class TransactionInputServlet extends HttpServlet {
 		UserVo testuser=userServiceImp.searchByAccount(account);
 		StockVo teststock=stockServiceImp.searchByComponent(component);
 		try {
-			saveOrUpdate(request,response,testuser,teststock);
+			transactionServiceImp.saveOrUpdate(request,response,testuser,teststock);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,15 +52,7 @@ public class TransactionInputServlet extends HttpServlet {
 		
 }
 	
-	public TransactionVo saveOrUpdate(HttpServletRequest request,HttpServletResponse response,UserVo userVo,StockVo stockVo) throws ParseException {
-		String trans_type=request.getParameter("trans_type");
-		Integer shares_num=Integer.valueOf(request.getParameter("shares_num"));
-		Integer trans_income=666;
-		TransactionVo result=new TransactionVo(userVo,stockVo,trans_type,shares_num,trans_income,GetToday.today);
-		result=transactionServiceImp.saveOrUpdate(result);
-		return result;
-		
-	}
+	
 	
 	
 }

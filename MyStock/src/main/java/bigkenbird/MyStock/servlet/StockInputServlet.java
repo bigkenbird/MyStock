@@ -28,7 +28,7 @@ public class StockInputServlet extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
-		StockVo result=saveStock(request,response);
+		StockVo result=stockServiceImp.saveStock(request,response);
 		if(result!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("status", "輸入成功");
@@ -43,15 +43,5 @@ public class StockInputServlet extends HttpServlet {
 	}
 
 
-	public StockVo saveStock(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		String stocksymbol=request.getParameter("stocksymbol");
-		String component=request.getParameter("component");
-		Integer price=Integer.valueOf(request.getParameter("price"));
-		StockVo obj=new StockVo(stocksymbol,component,price, GetToday.today);
-		stockServiceImp.saveOrUpdate(obj);
-		return obj;
-		
-		
-	}
-
+	
 }

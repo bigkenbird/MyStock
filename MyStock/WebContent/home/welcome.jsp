@@ -8,7 +8,8 @@
 <jsp:include page="/WEB-INF/header&footer/header.jsp" flush="true"/>
 </head>
 <body>
+
 <h1>你好</h1>
-<img id="stock-image" name="image" alt="image is missing" src="/WEB-INF/image/stock-image.jpg"/>
+<img id="stock-image" name="image" alt="image is missing" src="/image/stock-image.jpg" width="200px" height="200px"/>
 </body>
 </html>
