@@ -9,6 +9,6 @@
 </head>
 <body>
 <h1>你好</h1>
-
+<img id="stock-image" name="image" alt="image is missing" src="/WEB-INF/image/stock-image.jpg"/>
 </body>
 </html>
