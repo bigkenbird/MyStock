@@ -1,8 +1,11 @@
 package bigkenbird.MyStock.service.serviceImp;
 
 import java.io.IOException;
+import java.security.InvalidKeyException;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import bigkenbird.MyStock.dao.UserDao;
 import bigkenbird.MyStock.service.UserService;
+import bigkenbird.MyStock.util.Encryption;
 import bigkenbird.MyStock.vo.UserVo;
 
 public class UserServiceImp implements UserService {
@@ -20,8 +24,10 @@ public class UserServiceImp implements UserService {
 	public boolean checkLogin(String account,String password) {
 		List<UserVo> rs=userDao.seachByAccount(account);
 		if(rs!=null) {
+			String element_password;
 			for(UserVo element:rs) {
-				if(element.getPassword()==password) {
+				element_password=element.getPassword().toString();
+				if(element_password.equals(password)) {
 					return true;
 				}
 				return false;
@@ -62,12 +68,13 @@ public class UserServiceImp implements UserService {
 		}
 	}
 	@Override
-		public UserVo saveMember(HttpServletRequest request,HttpServletResponse response) {
+		public UserVo saveMember(HttpServletRequest request,HttpServletResponse response) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		String account=request.getParameter("account");
 		String password=request.getParameter("password");
 		String name=request.getParameter("name");
 		Integer money=Integer.valueOf(request.getParameter("money"));
-		UserVo result=new UserVo(account,password,name,money);
+		byte[] decrypted_password=Encryption.Encrytor(password);
+		UserVo result=new UserVo(account,decrypted_password,name,money);
 		UserVo rs=saveOrUpdateMember(result);
 		return result;
 		

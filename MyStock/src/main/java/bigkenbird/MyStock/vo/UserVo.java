@@ -20,9 +20,9 @@ public class UserVo {
 	}
 	
 	
-	public UserVo(String account, String password, String name, Integer money) {
+	public UserVo(String account, byte[] decrypted_password, String name, Integer money) {
 		this.account = account;
-		this.password = password;
+		this.decrypted_password = decrypted_password;
 		this.name = name;
 		this.money = money;
 	}
@@ -38,7 +38,7 @@ public class UserVo {
 	private String account;
 	
 	@Column(name="password")
-	private String password;
+	private byte[] decrypted_password;
 	
 	@Column(name="name")
 	private String name;
@@ -65,12 +65,12 @@ public class UserVo {
 		this.account = account;
 	}
 
-	public String getPassword() {
-		return password;
+	public byte[] getPassword() {
+		return decrypted_password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setdecrypted_password(byte[] decrypted_password) {
+		this.decrypted_password = decrypted_password;
 	}
 
 	public String getName() {

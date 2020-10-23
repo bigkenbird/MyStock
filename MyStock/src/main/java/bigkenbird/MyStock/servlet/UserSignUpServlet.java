@@ -1,7 +1,10 @@
 package bigkenbird.MyStock.servlet;
 
 import java.io.IOException;
+import java.security.InvalidKeyException;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +38,13 @@ public class UserSignUpServlet extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
-		UserVo rs=userServiceImp.saveMember(request,response);
+		UserVo rs = null;
+		try {
+			rs = userServiceImp.saveMember(request,response);
+		} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+			e.printStackTrace();
+		}
+		
 		HttpSession session=request.getSession();
 		if(rs!=null) {
 			session.setAttribute("user", rs);

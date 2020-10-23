@@ -36,7 +36,7 @@ public class Encryption {
 	}
 	
 	//加密
-	public byte[] Encrytor(String password) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+	public static byte[] Encrytor(String password) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		c.init(Cipher.ENCRYPT_MODE,deskey);
 		byte[] src=password.getBytes();
 		cipherByte=c.doFinal(src);
@@ -44,15 +44,11 @@ public class Encryption {
 	}
 	
 	//解密
-	public byte[] Decryptor(byte[] buff) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+	public static byte[] Decryptor(byte[] buff) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		// 根據金鑰，對Cipher物件進行初始化，DECRYPT_MODE表示加密模式
 		c.init(Cipher.DECRYPT_MODE, deskey);
 		cipherByte = c.doFinal(buff);
 		return cipherByte;
 	}
 	
-	
-	
-	
-
 }
